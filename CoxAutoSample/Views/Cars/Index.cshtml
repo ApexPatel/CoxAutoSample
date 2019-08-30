@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<CoxAutoSample.Models.CarsModel>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/Container/Style/theme.css" type="text/css" />
+</head>
+<body>
+    <div style="height:68px; background-color:#5b9dcf;margin:0 0 20px 0">
+        <img src="~/Container/Img/logo.png"  />
+    </div>
+    <div>
+
+        @using (Html.BeginForm("","",FormMethod.Post, new {enctype="multipart/form-data"})){
+
+            <input type="file" name="FileUpload" />
+            <input type="submit" name="Submit" id="Submit" value="Upload" />
+         }
+
+        <p>@Html.Encode(ViewData["Feedback"]) </p>
+
+<div class="table-wrapper">
+    @if (Model != null)
+{
+            <table class="fl-table">
+                <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DealNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CustomerName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DealershipName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Vehicle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                </tr>
+                </thead>
+
+                    @foreach (var item in Model)
+                    {
+<tbody>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DealNumber)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CustomerName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DealershipName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Vehicle)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Date)
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                        }
+</table>
+            }
+            </div>
+    </div>
+</body>
+</html>
